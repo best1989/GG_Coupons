@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.setTitle(R.string.main_act_title);
         setContentView(R.layout.activity_main);
 
         /*To avoid problems with HttpUrlConnection
@@ -62,5 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
         ctgListView = (ListView)findViewById(R.id.categories);
         ctgListView.setAdapter(new CategoriesAdapter(MainActivity.this, categoriesList,imgIDs));
+        /*Empty state when the list is empty
+          GG 2016.03.30
+          */
+        ctgListView.setEmptyView(findViewById(R.id.emptyCtg));
     }
 }
