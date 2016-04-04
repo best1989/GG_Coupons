@@ -15,9 +15,9 @@ import android.widget.TextView;
  * @version 1.0
  * @since v1.2016.03.22
  */
-public class CategoriesAdapter extends BaseAdapter{
+public class CategoryAdapter extends BaseAdapter{
 
-    private static ArrayList<Categories> searchArrayList;
+    private static ArrayList<Category> searchArrayList;
     private LayoutInflater mInflater;
     private int[] imgIDs;
 
@@ -28,7 +28,7 @@ public class CategoriesAdapter extends BaseAdapter{
      * @param ids An array of ints with the IDs of the image resources for each category
      * @since v1.2016.03.22
      */
-    public CategoriesAdapter(Context context, ArrayList<Categories> results, int[] ids) {
+    public CategoryAdapter(Context context, ArrayList<Category> results, int[] ids) {
         searchArrayList = results;
         mInflater = LayoutInflater.from(context);
         imgIDs = ids;
@@ -80,7 +80,9 @@ public class CategoriesAdapter extends BaseAdapter{
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        convertView.setBackgroundResource(imgIDs[position]);
+
+        if (imgIDs != null)
+            convertView.setBackgroundResource(imgIDs[position]);
         holder.txtCatName.setText(searchArrayList.get(position).getCatName());
        // holder.txtCatID.setText(searchArrayList.get(position).getCatID());
         return convertView;

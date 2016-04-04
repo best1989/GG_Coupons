@@ -1,9 +1,11 @@
 package com.android.gguzman.ggcoupons;
 
-import android.os.StrictMode;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ListView ctgListView;
     int[] imgIDs;
     private String ctgURL = "http://api.8coupons.com/v1/getcategory";
+    //private String eCouponsKey="27426ada5e0c4576c6cbaadd8042c1192b4de941374ec9fc0839f1e3f7ef94a18631c0bf9f5580262a292910aec5ce11";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,26 +34,18 @@ public class MainActivity extends AppCompatActivity {
         this.setTitle(R.string.main_act_title);
         setContentView(R.layout.activity_main);
 
-        /*To avoid problems with HttpUrlConnection
-          GG 2016.03.27
-         */
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-
         //Int array with the IDs of the images for each category
         imgIDs = new int[]{R.drawable.ctg_1, R.drawable.ctg_2, R.drawable.ctg_3,
                 R.drawable.ctg_4, R.drawable.ctg_6, R.drawable.ctg_7};
 
         JSONArray jsonCategories = CouponsRequest.requestWebService(ctgURL);
-        ArrayList<Categories> categoriesList = new ArrayList<>();
+        ArrayList<Category> categoriesList = new ArrayList<>();
 
         try {
             if (jsonCategories != null) {
                 for (int i = 0; i < jsonCategories.length(); i++) {
                     JSONObject jsonCategory = jsonCategories.getJSONObject(i);
-                    Categories category = new Categories();
+                    Category category = new Category();
                     category.setCatID(jsonCategory.getString("categoryID"));
                     category.setCatName(jsonCategory.getString("category"));
                     categoriesList.add(category);
@@ -62,10 +57,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ctgListView = (ListView)findViewById(R.id.categories);
-        ctgListView.setAdapter(new CategoriesAdapter(MainActivity.this, categoriesList,imgIDs));
+        ctgListView.setAdapter(new CategoryAdapter(MainActivity.this, categoriesList,imgIDs));
         /*Empty state when the list is empty
           GG 2016.03.30
           */
         ctgListView.setEmptyView(findViewById(R.id.emptyCtg));
+
+        /*When a category is selected the subcategories activity starts, using the catName
+        for the title and the catID to filter the list
+         */
+        ctgListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent subCtgIntent = new Intent(MainActivity.this,Subcategories.class);
+                Category selCtg = (Category) ctgListView.getItemAtPosition(position);
+
+                subCtgIntent.putExtra("ctgId", selCtg.getCatID());
+                subCtgIntent.putExtra("ctgName",selCtg.getCatName());
+
+                startActivity(subCtgIntent);
+            }
+        });
     }
 }

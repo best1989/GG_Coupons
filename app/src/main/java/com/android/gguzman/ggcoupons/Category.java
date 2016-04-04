@@ -8,7 +8,7 @@ package com.android.gguzman.ggcoupons;
  * @version 1.0
  * @since v1.2016.03.22
  */
-public class Categories {
+public class Category {
 
     private String catID="";
     private String catName="";

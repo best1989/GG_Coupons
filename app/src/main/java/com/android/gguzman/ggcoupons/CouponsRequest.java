@@ -2,6 +2,7 @@ package com.android.gguzman.ggcoupons;
 
 
 import android.os.Build;
+import android.os.StrictMode;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -28,7 +29,7 @@ public class CouponsRequest {
     /**
     *Method that calls one of the 8Coupons web services, depending on the {@code serviceURL}
     * param. It returns a JSONArray with the answer. For now, it have been tested with
-    * the Categories request only.<br><br>
+    * the Categories and Subcategories requests only.<br><br>
      *     It uses {@code HttpUrlConnection} instead of HttpClient because the latter is being
      *     phased out.
      *
@@ -40,6 +41,14 @@ public class CouponsRequest {
     public static JSONArray requestWebService(String serviceUrl) {
         disableConnectionReuseIfNecessary();
         HttpURLConnection urlConnection = null;
+
+        /*To avoid problems with HttpUrlConnection
+          GG 2016.03.27
+         */
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         try {
             // create connection
