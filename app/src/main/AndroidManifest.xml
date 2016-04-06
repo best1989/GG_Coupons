@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Subcategories"></activity>
+        <activity android:name=".OnboardingActivity"></activity>
     </application>
 
 </manifest>
