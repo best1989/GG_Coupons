@@ -5,18 +5,28 @@
     android:padding="16dp"
     android:gravity="center_horizontal">
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Y vas bien!"
-        android:textSize="48sp"
-        android:layout_marginTop="50dp"/>
+        android:layout_height="175dp"
+        android:id="@+id/obImg1"
+        android:src="@drawable/city"
+        android:contentDescription="@string/obLocImgDscp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:layout_marginTop="20dp"
-        android:text="You seem to be a new user."/>
+        android:layout_marginBottom="30dp"
+        android:gravity="center_horizontal"
+        android:text="@string/obCityTxt"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="City"
+        android:ems="12"
+        android:id="@+id/city" />
 
 </LinearLayout>

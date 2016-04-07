@@ -7,7 +7,7 @@
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/pager"
+        android:id="@+id/obPager"
         />
 
     <LinearLayout
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="Skip"
-            android:id="@+id/skip"
+            android:id="@+id/obSkip"
             />
 
         <Button
@@ -29,19 +29,19 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="Next"
-            android:id="@+id/next"
+            android:id="@+id/obNext"
             />
 
     </LinearLayout>
 
     <com.ogaclejapan.smarttablayout.SmartTabLayout
-        android:id="@+id/indicator"
+        android:id="@+id/obIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/navigation"
         android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
         app:stl_dividerThickness="0dp"
-        app:stl_indicatorColor="#1e88e5"
+        app:stl_indicatorColor="#3F51B5"
         />
 </RelativeLayout>

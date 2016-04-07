@@ -2,4 +2,15 @@
     <string name="app_name">GG Coupons</string>
     <string name="main_act_title">Categories</string>
     <string name="emptyCtg">Seems like there aren\'t any active categories at the moment</string>
+
+    <!--Onboarding-->
+    <string name="obCouponsImgDscp">Coupons</string>
+    <string name="obWelcomeTitle">Welcome!</string>
+    <string name="obNewUsrTxt">You seem to be a new user.</string>
+    <string name="obCustomExpTxt">Let us customize your experience within the app!</string>
+    <string name="obUsrname">Pick a name to use in the app</string>
+    <string name="obUsrnameImgDscp">App Username</string>
+    <string name="obUsrPlacehold">Username</string>
+    <string name="obLocImgDscp">Localization</string>
+    <string name="obCityTxt">Select the nearest city to your location</string>
 </resources>

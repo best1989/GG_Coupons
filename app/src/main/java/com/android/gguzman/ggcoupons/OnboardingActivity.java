@@ -13,7 +13,11 @@ import android.widget.Button;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 /**
- * Created by Gabriel on 05/04/2016.
+ * Class that manages the onboarding for the app, through three fragments
+ * @author Gabriel Guzmán
+ * @version 1.0
+ * @since v1.2016.04.05
+ * @see android.support.v4.app.FragmentActivity
  */
 public class OnboardingActivity extends FragmentActivity {
 
@@ -28,12 +32,23 @@ public class OnboardingActivity extends FragmentActivity {
 
         setContentView(R.layout.onboarding);
 
-        pager = (ViewPager)findViewById(R.id.pager);
-        indicator = (SmartTabLayout)findViewById(R.id.indicator);
-        skip = (Button)findViewById(R.id.skip);
-        next = (Button)findViewById(R.id.next);
+        pager = (ViewPager)findViewById(R.id.obPager);
+        indicator = (SmartTabLayout)findViewById(R.id.obIndicator);
+        skip = (Button)findViewById(R.id.obSkip);
+        next = (Button)findViewById(R.id.obNext);
 
+        /* FragmentStatePagerAdapter is used to save the state of the fragment if it's killed
+           between transitions. This way, the system uses less memory for each fragment, at the
+           cost of possible overheat if the fragments are too heavy. getItem and getCount always
+           have to be present.
+         */
         FragmentStatePagerAdapter adapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+
+            /**
+             *
+             * @param position
+             * @return The required fragment
+             */
             @Override
             public Fragment getItem(int position) {
                 switch (position) {
@@ -74,6 +89,10 @@ public class OnboardingActivity extends FragmentActivity {
             }
         });
 
+        /* This listener allows to change the buttons at the bottom of the screen.
+           If the user gets to the last page, the Skip button is dismissed and the text
+           for Next button changes
+         */
         indicator.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
@@ -89,14 +108,16 @@ public class OnboardingActivity extends FragmentActivity {
 
     }
 
+    /**
+     * Method that completes the onboarding process and saves the status in the
+     * shared preferences, to avoid showing the onboarding screens after the first time.
+     */
     private void finishOnboarding() {
         // Get the shared preferences
-        SharedPreferences preferences =
-                getSharedPreferences("my_preferences", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
 
         // Set onboarding_complete to true
-        preferences.edit()
-                .putBoolean("onboarding_complete",true).apply();
+        preferences.edit().putBoolean("onboarding_complete",true).apply();
 
         // Launch the main Activity, called MainActivity
         Intent main = new Intent(this, MainActivity.class);

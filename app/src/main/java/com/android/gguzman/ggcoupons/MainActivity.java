@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     ListView ctgListView;
     int[] imgIDs;
-    private String ctgURL = "http://api.8coupons.com/v1/getcategory";
-    //private String eCouponsKey="27426ada5e0c4576c6cbaadd8042c1192b4de941374ec9fc0839f1e3f7ef94a18631c0bf9f5580262a292910aec5ce11";
+    private final String CTGURL = "http://api.8coupons.com/v1/getcategory";
+    //private final String eCouponsKey="27426ada5e0c4576c6cbaadd8042c1192b4de941374ec9fc0839f1e3f7ef94a18631c0bf9f5580262a292910aec5ce11";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         // Get the shared preferences
         SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
 
-// Check if onboarding_complete is false
+        // Check if onboarding_complete is false
         if(!preferences.getBoolean("onboarding_complete",false)) {
             // Start the onboarding Activity
             Intent onboarding = new Intent(this, OnboardingActivity.class);
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         imgIDs = new int[]{R.drawable.ctg_1, R.drawable.ctg_2, R.drawable.ctg_3,
                 R.drawable.ctg_4, R.drawable.ctg_6, R.drawable.ctg_7};
 
-        JSONArray jsonCategories = CouponsRequest.requestWebService(ctgURL);
+        JSONArray jsonCategories = CouponsRequest.requestWebService(CTGURL);
         ArrayList<Category> categoriesList = new ArrayList<>();
 
         try {

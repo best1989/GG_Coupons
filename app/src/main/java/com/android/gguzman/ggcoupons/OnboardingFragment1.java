@@ -8,10 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by Gabriel on 05/04/2016.
+ * Fragment for the first screen of the onboarding
+ * @author Gabriel Guzmán
+ * @version 1.0
+ * @since v1.2016.04.05
+ * @see android.support.v4.app.Fragment
  */
-
-public class OnboardingFragment1 extends Fragment {
+public class OnboardingFragment1 extends Fragment{
 
     @Nullable
     @Override
