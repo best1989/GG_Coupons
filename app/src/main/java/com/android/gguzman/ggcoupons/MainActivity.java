@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     ListView ctgListView;
     int[] imgIDs;
     private final String CTGURL = "http://api.8coupons.com/v1/getcategory";
-    //private final String eCouponsKey="27426ada5e0c4576c6cbaadd8042c1192b4de941374ec9fc0839f1e3f7ef94a18631c0bf9f5580262a292910aec5ce11";
+    private final String DOTDUSER = "18381";
+    //private final String ECOUPONSKEY="27426ada5e0c4576c6cbaadd8042c1192b4de941374ec9fc0839f1e3f7ef94a18631c0bf9f5580262a292910aec5ce11";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
