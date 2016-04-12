@@ -1,4 +1,4 @@
-package com.android.gguzman.ggcoupons;
+package com.gguzman.android.ggcoupons;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,18 +13,25 @@ import android.widget.Button;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 /**
- * Class that manages the onboarding for the app, through three fragments
+ * Class that manages the onboarding for the app, through three fragments. <br><br>
+ *     It implements interfaces from two of the fragments to manage the callbacks
+ *     and data input form the user.
  * @author Gabriel Guzmán
  * @version 1.0
  * @since v1.2016.04.05
  * @see android.support.v4.app.FragmentActivity
+ * @see OnboardingFragment2
+ * @see OnboardingFragment3
  */
-public class OnboardingActivity extends FragmentActivity {
+public class OnboardingActivity extends FragmentActivity
+        implements OnboardingFragment2.onUsernameChangedListener,
+                   OnboardingFragment3.onZipcodeChangedListener {
 
     private ViewPager pager;
     private SmartTabLayout indicator;
     private Button skip;
     private Button next;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,9 @@ public class OnboardingActivity extends FragmentActivity {
         skip = (Button)findViewById(R.id.obSkip);
         next = (Button)findViewById(R.id.obNext);
 
+        // Get the shared preferences
+        preferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
+
         /* FragmentStatePagerAdapter is used to save the state of the fragment if it's killed
            between transitions. This way, the system uses less memory for each fragment, at the
            cost of possible overheat if the fragments are too heavy. getItem and getCount always
@@ -46,7 +56,7 @@ public class OnboardingActivity extends FragmentActivity {
 
             /**
              *
-             * @param position
+             * @param position The position at the Pager
              * @return The required fragment
              */
             @Override
@@ -98,14 +108,13 @@ public class OnboardingActivity extends FragmentActivity {
             public void onPageSelected(int position) {
                 if (position == 2) {
                     skip.setVisibility(View.GONE);
-                    next.setText("Done");
+                    next.setText(R.string.obDoneButton);
                 } else {
                     skip.setVisibility(View.VISIBLE);
-                    next.setText("Next");
+                    next.setText(R.string.obNextButton);
                 }
             }
         });
-
     }
 
     /**
@@ -113,8 +122,6 @@ public class OnboardingActivity extends FragmentActivity {
      * shared preferences, to avoid showing the onboarding screens after the first time.
      */
     private void finishOnboarding() {
-        // Get the shared preferences
-        SharedPreferences preferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
 
         // Set onboarding_complete to true
         preferences.edit().putBoolean("onboarding_complete",true).apply();
@@ -125,5 +132,25 @@ public class OnboardingActivity extends FragmentActivity {
 
         // Close the OnboardingActivity
         finish();
+    }
+
+    /**
+     * Implemented from the second fragment, saves the username at the Shared Preferences
+     * @param username The ID that the user wrote
+     */
+    @Override
+    public void onUsernameChanged(String username) {
+        // Set username
+        preferences.edit().putString("username",username).apply();
+    }
+
+    /**
+     * Implemented from the third fragment, saves the zipcode at the Shared Preferences
+     * @param zipcode The zipcode that the user wrote
+     */
+    @Override
+    public void onZipcodeChanged(String zipcode) {
+        // Set zipcode
+        preferences.edit().putString("zipcode",zipcode).apply();
     }
 }

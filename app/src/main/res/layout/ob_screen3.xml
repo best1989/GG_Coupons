@@ -3,7 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:background="#FFFDF9E3">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -27,6 +28,6 @@
         android:inputType="textPersonName"
         android:hint="City"
         android:ems="12"
-        android:id="@+id/city" />
+        android:id="@+id/obCity" />
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.android.gguzman.ggcoupons;
+package com.gguzman.android.ggcoupons;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
         this.setTitle(R.string.main_act_title);
         setContentView(R.layout.activity_main);
+
+        TextView usrGreeting = (TextView) findViewById(R.id.usrGreeting);
+        usrGreeting.setText("   Hi " + preferences.getString("username", "AnonUser") + "!   ");
 
         //Int array with the IDs of the images for each category
         imgIDs = new int[]{R.drawable.ctg_1, R.drawable.ctg_2, R.drawable.ctg_3,

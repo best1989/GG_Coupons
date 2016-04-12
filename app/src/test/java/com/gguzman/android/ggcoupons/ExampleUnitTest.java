@@ -1,4 +1,4 @@
-package com.android.gguzman.ggcoupons;
+package com.gguzman.android.ggcoupons;
 
 import org.junit.Test;
 

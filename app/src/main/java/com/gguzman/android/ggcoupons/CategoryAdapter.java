@@ -1,4 +1,4 @@
-package com.android.gguzman.ggcoupons;
+package com.gguzman.android.ggcoupons;
 
 import java.util.ArrayList;
 import android.content.Context;

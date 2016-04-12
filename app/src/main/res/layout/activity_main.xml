@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.android.gguzman.ggcoupons.MainActivity"
+    tools:context="com.gguzman.android.ggcoupons.MainActivity"
     android:background="#FFFDF9E3">
 
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -15,12 +14,65 @@
         android:layout_marginRight="15dp"
         android:background="@drawable/line"
         android:id="@+id/firstLine"
-        android:text="Hi Gabriel!"/>
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
 
-    <!--<HorizontalScrollView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/greetingAnonUser"
+            android:background="#FFFDF9E3"
+            android:id="@+id/usrGreeting"/>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/adBanner"
+        android:layout_below="@id/firstLine"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorAccent"
+        />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/line"
+        android:id="@+id/csLine"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/adBanner">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   Deals by Chain Store   "
+            android:background="#FFFDF9E3"
+            android:id="@+id/csTitle"/>
+
+    </LinearLayout>
+
+    <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/horizontalScrollView" >
+        android:id="@+id/horizontalScrollView"
+        android:layout_below="@id/csLine"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -51,30 +103,24 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Categories"
-        android:id="@+id/title"
-
-        android:singleLine="false"
-
-        />
-        -->
-
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/categories"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_below="@id/horizontalScrollView"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/emptyCtg"
         android:gravity="center"
+        android:layout_below="@id/horizontalScrollView"
         >
 
         <ImageView
@@ -83,14 +129,15 @@
             android:id="@+id/emptyCtgImg"
             android:src="@mipmap/emptyctg_img"
             android:gravity="center"
-            android:paddingBottom="20dp"/>
+            android:paddingBottom="20dp"
+            android:contentDescription="@string/emptyCtgImg" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/emptyCtgTxt"
             android:text="@string/emptyCtg"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_below="@+id/emptyCtgImg"
             android:gravity="center"
             />

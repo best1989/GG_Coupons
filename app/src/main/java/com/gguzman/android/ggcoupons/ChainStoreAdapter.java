@@ -1,4 +1,4 @@
-package com.android.gguzman.ggcoupons;
+package com.gguzman.android.ggcoupons;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,25 +10,24 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Custom adapter for the Subcategories ListView.
+ * Custom adapter for the Chain Stores.
  * @see BaseAdapter
  * @author Gabriel Guzmán
  * @version 1.0
- * @since v1.2016.04.03
+ * @since v1.2016.04.12
  */
-public class SubcategoryAdapter extends BaseAdapter{
+public class ChainStoreAdapter extends BaseAdapter{
 
-    //TODO: See if it's possible to extend CategoryAdapter and re-utilize code
-    private static ArrayList<Subcategory> searchArrayList;
+    private static ArrayList<ChainStore> searchArrayList;
     private LayoutInflater mInflater;
 
     /**
-     * Constructor for the subcategories adapter.
+     * Constructor for the chain stores adapter.
      * @param context The context from which it's called.
      * @param results The list to inflate.
-     * @since v1.2016.03.22
+     * @since v1.2016.04.12
      */
-    public SubcategoryAdapter(Context context, ArrayList<Subcategory> results) {
+    public ChainStoreAdapter (Context context, ArrayList<ChainStore> results) {
         searchArrayList = results;
         mInflater = LayoutInflater.from(context);
     }
@@ -67,31 +66,31 @@ public class SubcategoryAdapter extends BaseAdapter{
      * @param convertView The view to convert.
      * @param parent The parent ViewGroup.
      * @return The inflated view.
-     * @since v1.2016.03.22
+     * @since v1.2016.04.12
      */
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.subcategories_list_item, parent,false);
             holder = new ViewHolder();
-            holder.txtSubcatName = (TextView) convertView.findViewById(R.id.subcat_name);
+            holder.txtCsName = (TextView) convertView.findViewById(R.id.subcat_name);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.txtSubcatName.setText(searchArrayList.get(position).getSubcatName());
-       // holder.txtCatID.setText(searchArrayList.get(position).getCatID());
+        holder.txtCsName.setText(searchArrayList.get(position).getCsName());
+        // holder.txtCatID.setText(searchArrayList.get(position).getCatID());
         return convertView;
     }
 
     /**
-     * Inner class for the holder to be used in the Subcategories ListView.
-     * @since v1.2016.03.22
+     * Inner class for the holder to be used in the Chain Stores view
+     * @since v1.2016.04.12
      */
     static class ViewHolder {
-        TextView txtSubcatName;
-        TextView txtSubcatID;
+        TextView txtCsName;
+        TextView txtCsID;
     }
 }
 

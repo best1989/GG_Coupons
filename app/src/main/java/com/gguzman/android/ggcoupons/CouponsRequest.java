@@ -1,9 +1,8 @@
-package com.android.gguzman.ggcoupons;
+package com.gguzman.android.ggcoupons;
 
 
 import android.os.Build;
 import android.os.StrictMode;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;

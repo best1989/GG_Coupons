@@ -1,4 +1,4 @@
-package com.android.gguzman.ggcoupons;
+package com.gguzman.android.ggcoupons;
 
 /**
  * Class that represents the subcategories provide by 8coupons.

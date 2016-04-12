@@ -1,8 +1,4 @@
 <resources>
-    <string name="app_name">GG Coupons</string>
-    <string name="main_act_title">Categories</string>
-    <string name="emptyCtg">Seems like there aren\'t any active categories at the moment</string>
-
     <!--Onboarding-->
     <string name="obCouponsImgDscp">Coupons</string>
     <string name="obWelcomeTitle">Welcome!</string>
@@ -13,4 +9,14 @@
     <string name="obUsrPlacehold">Username</string>
     <string name="obLocImgDscp">Localization</string>
     <string name="obCityTxt">Select the nearest city to your location</string>
+    <string name="obDoneButton">Done</string>
+    <string name="obNextButton">Next</string>
+    <string name="obSkipButton">Skip</string>
+
+    <!--MainActivity-->
+    <string name="app_name">GG Coupons</string>
+    <string name="main_act_title">Deals for you</string>
+    <string name="greetingAnonUser">   Hi AnonUser!   </string>
+    <string name="emptyCtg">Seems like there aren\'t any active categories at the moment</string>
+    <string name="emptyCtgImg">An image for an empty categories list</string>
 </resources>

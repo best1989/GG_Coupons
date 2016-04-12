@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/GGCoupons.iml" filepath="$PROJECT_DIR$/GGCoupons.iml" />
       <module fileurl="file://$PROJECT_DIR$/GG_Coupons.iml" filepath="$PROJECT_DIR$/GG_Coupons.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
