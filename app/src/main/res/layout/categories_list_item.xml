@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/pointstable"
+    android:id="@+id/ctgTable"
     android:layout_width="fill_parent"
     android:layout_height="100dp">
 
@@ -24,7 +24,5 @@
         </TextView>
 
     </TableRow>
-
-
 
 </TableLayout>

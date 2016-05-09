@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,8 +30,11 @@ public class MainActivity extends AppCompatActivity {
     ListView ctgListView;
     int[] imgIDs;
     private final String CTGURL = "http://api.8coupons.com/v1/getcategory";
+    private final String CHAINSTORESURL = "http://api.8coupons.com/v1/getchainstorelist?key=";
     private final String DOTDUSER = "18381";
-    //private final String ECOUPONSKEY="27426ada5e0c4576c6cbaadd8042c1192b4de941374ec9fc0839f1e3f7ef94a18631c0bf9f5580262a292910aec5ce11";
+    private final String ECOUPONSKEY="27426ada5e0c4576c6cbaadd8042c1192b4de941374ec9fc0839f1e3f7ef94a18631c0bf9f5580262a292910aec5ce11";
+
+    RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +81,33 @@ public class MainActivity extends AppCompatActivity {
             // handle exception
             Log.e("for",e.getMessage());
         }
+
+        //------*********------
+
+        JSONArray jsonChainStores = CouponsRequest.requestWebService(CHAINSTORESURL+ECOUPONSKEY);
+        ArrayList<ChainStore> chainStoresList = new ArrayList<>();
+
+        try {
+            if (jsonChainStores != null) {
+                for (int i = 0; i < 5; i++) {
+                    JSONObject jsonChainStore = jsonChainStores.getJSONObject(i);
+                    ChainStore chainstore = new ChainStore();
+                    chainstore.setCsID(jsonChainStore.getString("chainID"));
+                    chainstore.setCsName(jsonChainStore.getString("name"));
+                    chainStoresList.add(chainstore);
+                }
+            }
+        } catch (JSONException e) {
+            // handle exception
+            Log.e("for CS",e.getMessage());
+        }
+
+        LinearLayoutManager layoutManager= new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView.setAdapter(new ChainStoreRecyclerAdapter(chainStoresList, R.layout.chainstore_list_item));
+        mRecyclerView.setLayoutManager(layoutManager);
+
+        //------*********------
 
         ctgListView = (ListView)findViewById(R.id.categories);
         ctgListView.setAdapter(new CategoryAdapter(MainActivity.this, categoriesList,imgIDs));

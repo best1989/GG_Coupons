@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/subctgTable"
+    android:id="@+id/chainStoreTable"
     android:layout_width="fill_parent"
     android:layout_height="100dp">
 
     <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginBottom="2dp"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="10dp"
         >
 
         <TextView
-            android:id="@+id/subcat_name"
-            android:layout_width="250dp"
+            android:id="@+id/cs_name"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:padding="15sp"
-            android:textSize="25sp"
+            android:textSize="15sp"
             android:text="Texto 1"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:background="#4000"
             >
 
